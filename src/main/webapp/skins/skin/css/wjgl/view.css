@@ -1,0 +1,48 @@
+/**************************详情页*****************************************/
+
+.sousuo{ width:85%; margin:0 auto; overflow:hidden;}
+.sousuo .row{ float:right; margin-bottom:20px; margin-top:-30px;}
+.sousuo .row .text{ width:300px; height:34px; border:1px solid #58abdd; padding:0 10px; float:left;}
+.sousuo .row .sub{ width:60px; height:34px; background:#004e86; font-family:"微软雅黑"; font-size:14px; color:#fff;margin:0 6px; float:left; cursor:pointer; transition:0.3s;}
+.sousuo .row a{ display:block; width:90px; line-height:34px; background:#004e86; font-size:14px; color:#fff; text-align:center; float:left; transition:0.3s;}
+.sousuo .row .sub:hover,.sousuo .row a:hover{ background:#58abdd;}
+
+.content{ width:85%; margin:0 auto; overflow:hidden;}
+/*左边公共部分*/
+.content .left{ width:65%; float:left;}
+.jiben,.guan,.xiu,.qicao,.fenlei,.qita{ border:1px solid #58abdd; background:#fff;}
+.guan,.qicao{ margin:20px 0;}
+.content .title{ height:40px; line-height:40px; padding:0 20px; background:#004e86; font-size:14px; color:#fff; font-weight:600;}
+.content .title button{ width:50px; height:26px; border-radius:3px; background:#f67878; font-size:14px; color:#fff; border:0; float:right; margin-top:7px; cursor:pointer;}
+
+.content .jiben{ position:relative;}
+.content .pdf{ position:absolute; right:20px; top:50px;}
+.content .jiben table{ padding:0 20px; color:#333; line-height:1.75em;}
+.content .jiben table td{ padding:4px 10px;}
+.content .jiben td p{ color:#525252; font-weight:600; padding:2px 0;}
+.content .jiben td b{ float:left; margin-right:20px;}
+.content .jiben td span{ display:block; width:40px; height:20px; background:#58abdd; border-radius:3px; color:#fff; font-weight:600; text-align:center; line-height:20px; float:left;}
+.content .jiben .x td{ border-top:1px dotted #58abdd;}
+
+.content .g_con{ padding:5px 20px; color:#999999;}
+.content .g_con div{ min-height:60px; background:#f5f9fd; margin:10px 0; border:1px solid #ccc; padding:5px 10px; overflow:hidden;}
+.content .g_con p{ color:#525252; font-weight:600; margin-bottom:10px;}
+.content .g_con h4.extra{ color:#333; display:none;}
+.content .g_con a.more{ color:#f78b8b; float:right;}
+
+.content .x_con{ padding:20px 0; text-align:left;margin-left:10px;}
+.content .x_con h4.extra{ color:#333; display:none;}
+
+.content .q_con{ padding:10px 30px; color:#333; line-height:2em; overflow:hidden;}
+.content .q_con a{ color:#f78b8b; float:right;}
+.content .q_con p.extra{ color:#333; display:none;}
+
+.content .fenlei{ margin-bottom:20px;}
+.content .f_con{ padding:10px; color:#525252;}
+.content .f_con p{ font-weight:600;}
+
+/*右边代码*/
+.content .right{ width:33%; background:#fff; float:right; color:#525252;}
+.content .right p{ padding:10px 25px; font-weight:600; border-bottom:1px solid #58abdd;}
+.content .right li{ padding:12px 25px; color:#58abdd;}
+.content .right li span{color:#525252; display:block; padding:8px;}

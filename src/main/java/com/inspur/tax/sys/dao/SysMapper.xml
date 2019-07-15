@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.tax.sys.dao.SysMapper">
+	<insert id="addUser" parameterType="java.util.Map">
+		INSERT INTO USEROLE
+		( 
+		ACCOUNT,
+		NAME,
+		DEPARTMENT,
+		MARK,
+		PASSWORD,
+		ISADMIN
+		)
+		VALUES
+			(
+			#{account,jdbcType=VARCHAR},
+			#{xingming,jdbcType=VARCHAR},
+			#{bumen,jdbcType=VARCHAR},
+			#{beizhu,jdbcType=VARCHAR},
+			#{password,jdbcType=VARCHAR},
+			'0'
+			)
+	</insert>
+	
+	<update id="updateUser" parameterType="java.util.Map">
+			UPDATE USEROLE
+			<set>
+				ACCOUNT = #{account,jdbcType=VARCHAR},
+				NAME
+				=#{xingming,jdbcType=VARCHAR},
+				DEPARTMENT = #{bumen,jdbcType=VARCHAR},
+				MARK = #{beizhu,jdbcType=VARCHAR},
+				PASSWORD = #{password,jdbcType=VARCHAR}
+			</set>
+			WHERE ACCOUNT = #{account,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM USEROLE
+		WHERE ACCOUNT =
+			#{account,jdbcType=VARCHAR}
+	</delete>
+	
+	
+</mapper>

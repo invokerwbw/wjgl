@@ -1,0 +1,23 @@
+<sitemesh>
+
+	<!-- 默认所有下面未定义的页面统一使用根目录下的layout布局 -->
+	<mapping path="/service/*" decorator="/jsp/public/layout.jsp" />
+
+	<!-- 【模块一】 -->
+	<!-- <mapping>
+		<path>/service/demo/grid/*</path>
+		<decorator>/jsp/demo/grid/layout.jsp</decorator>
+		<decorator>/jsp/layout.jsp</decorator>
+	</mapping> -->
+
+	<!-- 【模块三】 -->
+	<!-- <mapping>
+		<path>/service/demo/doc/*</path>
+		<decorator>/jsp/demo/doc/layout.jsp</decorator>
+		<decorator>/jsp/layout.jsp</decorator>
+	</mapping> -->
+	
+	<!-- 排除的用法 -->
+	<mapping path="/service/test/demo/staff/toOpenPage/*" exclude="true" />
+
+</sitemesh>

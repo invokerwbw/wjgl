@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspur.tax.nsrgxyt.nsrgxgl.dao.NsrgxglDao">
+
+	<!-- 获取指定关系分类 -->
+	<select id="getGxfl" parameterType="String" resultType="java.util.Map">
+        SELECT GXFL_DM,
+               GXFL_MC,
+               YXBZ,
+               DATE_FORMAT(CJSJ,'%Y-%m-%d') CJSJ,
+               CJR,
+               DATE_FORMAT(XGSJ,'%Y-%m-%d') XGSJ,
+               XGR
+          FROM YT_GXFL
+		 WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+	</select>
+	
+	<!-- 获取指定关系类型 -->
+	<select id="getGxlx" parameterType="String" resultType="java.util.Map">
+        SELECT GXLX_BM,
+               GXFL_DM,
+               GXLX_MC,
+               YXBZ,
+               DATE_FORMAT(CJSJ,'%Y-%m-%d') CJSJ,
+               CJR,
+               DATE_FORMAT(XGSJ,'%Y-%m-%d') XGSJ,
+               XGR,
+               GXLX_LYB,
+               GXLX_YXJ,
+               GXLX_FSZQQ,
+               GXLX_FSZQZ
+          FROM YT_GXLX
+		 WHERE GXLX_BM = #{gxlxBm,jdbcType=CHAR}
+	</select>
+
+    <!-- 获取关系分类列表 -->
+	<select id="listGxfl" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT GXFL_DM,
+               GXFL_MC,
+               YXBZ,
+               DATE_FORMAT(CJSJ,'%Y-%m-%d') CJSJ,
+               CJR,
+               DATE_FORMAT(XGSJ,'%Y-%m-%d') XGSJ,
+               XGR
+          FROM YT_GXFL
+         ORDER BY GXFL_DM
+	</select>
+	
+	<!-- 获取关系类型列表 -->
+	<select id="listGxlx" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT GXLX_BM,
+               GXFL_DM,
+               GXLX_MC,
+               YXBZ,
+               DATE_FORMAT(CJSJ,'%Y-%m-%d') CJSJ,
+               CJR,
+               DATE_FORMAT(XGSJ,'%Y-%m-%d') XGSJ,
+               XGR,
+               GXLX_LYB,
+               GXLX_YXJ,
+               GXLX_FSZQQ,
+               GXLX_FSZQZ
+          FROM YT_GXLX
+         WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+         ORDER BY GXLX_BM
+	</select>
+	
+	<!-- 生成关系分类代码 -->
+	<select id="initGxflDm" resultType="String">
+        SELECT LPAD(IFNULL(MAX(T.GXFL_DM), 0) + 1, 2, '0') GXFL_DM
+          FROM YT_GXFL T
+	</select>
+	
+	<!-- 生成关系类型编码 -->
+	<select id="initGxlxBm" resultType="String" parameterType="String">
+        SELECT #{gxflDm,jdbcType=CHAR} ||
+               LPAD(DECODE(MAX(T.GXLX_BM), NULL, 0, MAX(SUBSTR(T.GXLX_BM, 3, 2))) + 1,
+                    2,
+                    '0') GXLX_BM
+          FROM YT_GXLX T
+         WHERE T.GXFL_DM = #{gxflDm,jdbcType=CHAR}
+	</select>
+	
+	<!-- 添加关系分类 -->
+	<insert id="addGxfl" parameterType="java.util.Map">
+	    INSERT INTO YT_GXFL
+          (GXFL_DM, GXFL_MC)
+        VALUES
+          (#{gxflDm,jdbcType=CHAR}, #{gxflMc,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 添加关系类型 -->
+	<insert id="addGxlx" parameterType="java.util.Map">
+        INSERT INTO YT_GXLX
+          (GXLX_BM,
+          GXFL_DM,
+          GXLX_MC,
+          GXLX_LYB,
+          GXLX_YXJ,
+          GXLX_FSZQQ,
+          GXLX_FSZQZ,
+          GXLX_ZD)
+       VALUES
+         (#{gxlxBm,jdbcType=CHAR},
+          #{gxflDm,jdbcType=CHAR},
+          #{gxlxMc,jdbcType=VARCHAR},
+          #{gxlxLyb,jdbcType=VARCHAR},
+          #{gxlxYxj,jdbcType=CHAR},
+          STR_TO_DATE(#{gxlxFszqq,jdbcType=VARCHAR},'%Y-%m-%d'), 
+          STR_TO_DATE(#{gxlxFszqz,jdbcType=VARCHAR},'%Y-%m-%d'), 
+          #{gxlxZd,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 修改关系分类 -->
+	<update id="updateGxfl" parameterType="java.util.Map">
+	    UPDATE YT_GXFL
+           SET GXFL_MC = #{gxflMc,jdbcType=VARCHAR}, XGSJ = sysdate
+         WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+	</update>
+	
+	<!-- 修改关系类型 -->
+	<update id="updateGxlx" parameterType="java.util.Map">
+        UPDATE YT_GXLX
+           SET GXLX_MC    = #{gxlxMc,jdbcType=VARCHAR},
+               XGSJ       = sysdate,
+               GXLX_LYB   = #{gxlxLyb,jdbcType=VARCHAR},
+               GXLX_YXJ   = #{gxlxYxj,jdbcType=CHAR},
+               GXLX_FSZQQ = STR_TO_DATE(#{gxlxFszqq,jdbcType=VARCHAR},'%Y-%m-%d'),
+               GXLX_FSZQZ = STR_TO_DATE(#{gxlxFszqz,jdbcType=VARCHAR},'%Y-%m-%d'),
+               GXLX_ZD    = #{gxlxZd,jdbcType=VARCHAR}
+         WHERE GXLX_BM = #{gxlxBm,jdbcType=CHAR}
+	</update>
+	
+	<!-- 启用指定关系分类 -->
+	<update id="enabledGxfl" parameterType="String">
+	    UPDATE YT_GXFL
+           SET YXBZ = 'Y', XGSJ = sysdate
+         WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+           AND YXBZ = 'N'
+	</update>
+	
+	<!-- 停用指定关系分类 -->
+	<update id="disabledGxfl" parameterType="String">
+	    UPDATE YT_GXFL
+           SET YXBZ = 'N',  XGSJ = sysdate
+         WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+           AND YXBZ = 'Y'
+	</update>
+	
+	<!-- 启用指定关系类型 -->
+	<update id="enabledGxlx" parameterType="String">
+	    UPDATE YT_GXLX
+           SET YXBZ = 'Y', XGSJ = sysdate
+         WHERE GXLX_BM = #{gxlxBm,jdbcType=CHAR}
+           AND YXBZ = 'N'
+	</update>
+	
+	<!-- 根据关系分类代码启用关系类型 -->
+	<update id="enabledGxlxByGxflDm" parameterType="String">
+		UPDATE YT_GXLX
+           SET YXBZ = 'Y',  XGSJ = sysdate
+         WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+           AND YXBZ = 'N'
+	</update>
+	
+	<!-- 停用指定关系类型 -->
+	<update id="disabledGxlx" parameterType="String">
+	    UPDATE YT_GXLX
+           SET YXBZ = 'N',  XGSJ = sysdate
+         WHERE GXLX_BM = #{gxlxBm,jdbcType=CHAR}
+           AND YXBZ = 'Y'
+	</update>
+	
+	<!-- 根据关系分类代码停用关系类型 -->
+	<update id="disabledGxlxByGxflDm" parameterType="String">
+		UPDATE YT_GXLX
+           SET YXBZ = 'N',  XGSJ = sysdate
+         WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+           AND YXBZ = 'Y'
+	</update>
+	
+	<!-- 删除指定关系分类 -->
+	<delete id="delGxfl" parameterType="String">
+		DELETE YT_GXFL WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+	</delete>
+	
+	<!-- 删除指定关系类型-->
+	<delete id="delGxlx" parameterType="String">
+		DELETE YT_GXLX WHERE GXLX_BM = #{gxlxBm,jdbcType=CHAR}
+	</delete>
+	
+	<!-- 根据关系分类代码删除关系类型 -->
+	<delete id="delGxlxByGxflDm" parameterType="String">
+		DELETE YT_GXLX WHERE GXFL_DM = #{gxflDm,jdbcType=CHAR}
+	</delete>
+	
+	<!-- 获取指定关系类型字段-->
+	<select id="getZd" parameterType="String" resultType="String">
+		SELECT GXLX_ZD
+          FROM YT_GXLX
+         WHERE GXLX_BM = #{gxlxBm,jdbcType=CHAR}
+	</select>
+
+</mapper>

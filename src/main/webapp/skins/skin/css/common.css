@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* 支持表格自动换行 */
+table.dataTable td, table.dataTable th {
+    white-space: normal !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table thead tr th, .table tbody tr td {
+    line-height:2em;
+}

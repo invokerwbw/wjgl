@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.tax.query.dao.QueryMapper">
+	<select id="groupStd" resultType="java.util.Map" parameterType="java.util.Map">
+
+		SELECT count(a100) as 'all',
+		(select count(a100) from standardwc gb where 1=1 and gb.a006 in (select orgcode
+		from org_all where leibie = 'G') 
+		<if test="a100_1 != null and a100_1 != '' and a100_2 != null and a100_2 != ''">
+			AND (gb.A100 LIKE CONCAT('%', #{a100_1,jdbcType=VARCHAR},
+			'%')
+			OR gb.A100 LIKE CONCAT('%', #{a100_2,jdbcType=VARCHAR},
+			'%')
+			)
+		</if>
+		
+		<if test="list!= null and list != ''">
+		<foreach collection="list" item="item" index="index" >  
+          AND gb.A298 LIKE CONCAT('%',#{item},'%')
+       </foreach>
+		</if>
+		<if test="bzzz != null and bzzz != ''">
+			AND gb.A006 = #{bzzz,jdbcType=VARCHAR}
+		</if>
+		<if test="zhuangtai != null and zhuangtai != ''">
+			AND gb.A200 IN
+			<foreach collection="zhuangtai" index="index" item="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>) as 'gb',
+		(select count(a100) from standardwc hb where 1=1 and hb.a006 in (select orgcode
+		from org_all where leibie = 'C') 
+			<if test="a100_1 != null and a100_1 != '' and a100_2 != null and a100_2 != ''">
+			AND (hb.A100 LIKE CONCAT('%', #{a100_1,jdbcType=VARCHAR},
+			'%')
+			OR hb.A100 LIKE CONCAT('%', #{a100_2,jdbcType=VARCHAR},
+			'%')
+			)
+		</if>
+		<if test="list!= null and list != ''">
+		<foreach collection="list" item="item" index="index" >  
+          AND hb.A298 LIKE CONCAT('%',#{item},'%')
+       </foreach>
+		</if>
+		<if test="bzzz != null and bzzz != ''">
+			AND hb.A006 = #{bzzz,jdbcType=VARCHAR}
+		</if>
+		<if test="zhuangtai != null and zhuangtai != ''">
+			AND hb.A200 IN
+			<foreach collection="zhuangtai" index="index" item="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>) as 'hb',
+		(select count(a100) from standardwc db where 1=1 and db.a006 in (select orgcode
+		from org_all where leibie = 'D') 
+		<if test="a100_1 != null and a100_1 != '' and a100_2 != null and a100_2 != ''">
+			AND (db.A100 LIKE CONCAT('%', #{a100_1,jdbcType=VARCHAR},
+			'%')
+			OR db.A100 LIKE CONCAT('%', #{a100_2,jdbcType=VARCHAR},
+			'%')
+			)
+		</if>
+		<if test="list!= null and list != ''">
+		<foreach collection="list" item="item" index="index" >  
+          AND db.A298 LIKE CONCAT('%',#{item},'%')
+       </foreach>
+		</if>
+		<if test="bzzz != null and bzzz != ''">
+			AND db.A006 = #{bzzz,jdbcType=VARCHAR}
+		</if>
+		<if test="zhuangtai != null and zhuangtai != ''">
+			AND db.A200 IN
+			<foreach collection="zhuangtai" index="index" item="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>) as 'db',
+		(select count(a100) from standardwc tb where 1=1 and tb.a006 in (select orgcode
+		from org_all where leibie = 'T') 
+		<if test="a100_1 != null and a100_1 != '' and a100_2 != null and a100_2 != ''">
+			AND (tb.A100 LIKE CONCAT('%', #{a100_1,jdbcType=VARCHAR},
+			'%')
+			OR tb.A100 LIKE CONCAT('%', #{a100_2,jdbcType=VARCHAR},
+			'%')
+			)
+		</if>
+		<if test="list!= null and list != ''">
+		<foreach collection="list" item="item" index="index" >  
+          AND tb.A298 LIKE CONCAT('%',#{item},'%')
+       </foreach>
+		</if>
+		<if test="bzzz != null and bzzz != ''">
+			AND tb.A006 = #{bzzz,jdbcType=VARCHAR}
+		</if>
+		<if test="zhuangtai != null and zhuangtai != ''">
+			AND tb.A200 IN
+			<foreach collection="zhuangtai" index="index" item="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>) as 'tb',
+		(select count(a100) from standardwc gw where 1=1 and gw.a006 in (select orgcode
+		from org_all where leibie = 'N') 
+		<if test="a100_1 != null and a100_1 != '' and a100_2 != null and a100_2 != ''">
+			AND (gw.A100 LIKE CONCAT('%', #{a100_1,jdbcType=VARCHAR},
+			'%')
+			OR gw.A100 LIKE CONCAT('%', #{a100_2,jdbcType=VARCHAR},
+			'%')
+			)
+		</if>
+		<if test="list!= null and list != ''">
+		<foreach collection="list" item="item" index="index" >  
+          AND gw.A298 LIKE CONCAT('%',#{item},'%')
+       </foreach>
+		</if>
+		<if test="zhuangtai != null and zhuangtai != ''">
+			AND gw.A200 IN
+			<foreach collection="zhuangtai" index="index" item="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>) as 'gw'
+		from standardwc t
+		where 1=1
+		<if test="a100_1 != null and a100_1 != '' and a100_2 != null and a100_2 != ''">
+			AND (T.A100 LIKE CONCAT('%', #{a100_1,jdbcType=VARCHAR},
+			'%')
+			OR T.A100 LIKE CONCAT('%', #{a100_2,jdbcType=VARCHAR},
+			'%')
+			)
+		</if>
+		<if test="list!= null and list != ''">
+		<foreach collection="list" item="item" index="index" >  
+          AND T.A298 LIKE CONCAT('%',#{item},'%')
+       </foreach>
+		</if>
+		<if test="bzzz != null and bzzz != ''">
+			AND t.A006 = #{bzzz,jdbcType=VARCHAR}
+		</if>
+		<if test="zhuangtai != null and zhuangtai != ''">
+			AND t.A200 IN
+			<foreach collection="zhuangtai" index="index" item="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</select>
+
+
+	<select id="listStd" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT T.A100 as bzh,
+		T.A298 as zwmc,
+		T.A302 as ywmc,
+		T.A101 as fbrq,
+		T.A205 as ssrq,
+		T.A305 as ys,
+		T.A200 as zt
+		FROM STANDARDWC T
+		WHERE 1=1
+		<if test="bzzz != null and bzzz != ''">
+			AND T.A006 = #{bzzz,jdbcType=VARCHAR}
+		</if>
+		<if test="a100_1 != null and a100_1 != '' and a100_2 != null and a100_2 != ''">
+			AND (T.A100 LIKE CONCAT('%', #{a100_1,jdbcType=VARCHAR},
+			'%')
+			OR T.A100 LIKE CONCAT('%', #{a100_2,jdbcType=VARCHAR},
+			'%')
+			)
+		</if>
+		<if test="list!= null and list != ''">
+		<foreach collection="list" item="item" index="index" >  
+          AND T.A298 LIKE CONCAT('%',#{item},'%')
+       </foreach>
+		</if>
+
+		<if test="leibie != null and leibie != ''">
+			<![CDATA[ 
+			AND T.a006 in (select orgcode
+		from org_all where leibie =  #{leibie,jdbcType=VARCHAR}) 
+		]]>
+		</if>
+		<if test="zhuangtai != null and zhuangtai != ''">
+			AND T.A200 IN
+			<foreach collection="zhuangtai" index="index" item="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by T.A007*1 ASC
+	</select>
+
+
+	<select id="listUser" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT T.ACCOUNT,
+		T.NAME,
+		T.DEPARTMENT,
+		MARK,
+		PASSWORD,
+		ISADMIN
+		FROM USEROLE T
+	</select>
+
+
+	<select id="queryUserInfo" resultType="java.util.Map"
+		parameterType="String">
+		SELECT T.ACCOUNT,
+		T.NAME,
+		T.DEPARTMENT,
+		MARK,
+		PASSWORD,
+		ISADMIN
+		FROM USEROLE T
+		WHERE T.ACCOUNT = #{account,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

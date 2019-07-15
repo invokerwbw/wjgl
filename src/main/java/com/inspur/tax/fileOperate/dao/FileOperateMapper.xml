@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.tax.fileOperate.dao.FileOperateMapper">
+	
+	<select id="stdInfo" parameterType="String" resultType="java.util.Map">
+		SELECT t1.A100 AS BZH,
+		t1.A298 AS ZWMC,
+		t1.A302 AS YWMC,
+		t1.A200 AS ZT,
+		t1.A010 AS FW,
+		t1.A101 AS FBRQ,
+		t1.A205 AS SSRQ,
+		t1.A206 AS FZRQ,
+		t2.orgname AS BZZZ,
+		t1.A305 AS QWYS,
+		t1.A1004 AS ZWYZ,
+		t1.A461 AS DTBZ,
+		t1.A462 AS BDTBZ,
+		t1.A800 AS CYBZ,
+		t1.A820 AS XGD,
+		t1.A209 AS QCDW,
+		t1.A825 AS ICSFLH,
+		t1.A826 AS ZBFLH,
+		t1.A4754 AS GMHYFLH
+		FROM STANDARDWC t1, org_all t2
+		WHERE
+		t1.A100 = #{bzh,jdbcType=VARCHAR}
+		and t1.A006 = t2.orgcode
+	</select>
+	
+	
+	<select id="getA298ByA100" parameterType="String" resultType="String">
+		SELECT t1.A298 AS ZWMC
+		FROM STANDARDWC t1
+		WHERE
+		t1.A100 = #{bzh,jdbcType=VARCHAR}
+	</select>
+	
+		<select id="getFilePathByBzh" parameterType="String" resultType="java.util.Map">
+		SELECT A100 AS bzh,
+		A305 AS ys,
+		A1000 AS filepath
+		FROM STANDARDWC
+		WHERE
+		A100 = #{bzh,jdbcType=VARCHAR}
+	</select>
+	
+	
+	<select id="checkBzhIsExist" parameterType="String" resultType="java.util.Map">
+		SELECT A100 AS bzh
+		FROM STANDARDWC
+		WHERE
+		A100 = #{bzh,jdbcType=VARCHAR}
+	</select>
+	
+	
+</mapper>

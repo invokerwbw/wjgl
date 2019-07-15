@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.tax.login.dao.LoginMapper">
+	<resultMap type="com.inspur.tax.common.data.Employee" id="userInfoMap">
+		<id property="id" column="id" />
+		<result property="name_En" column="account" />
+		<result property="name_Ch" column="name" />
+		<result property="password" column="password" />
+		<result property="is_Admin" column="isadmin" />
+	</resultMap>
+	
+	<select id="getUserInfo" parameterType="String" resultMap="userInfoMap">
+		SELECT ID,
+		ACCOUNT,
+		NAME,
+		PASSWORD,
+		ISADMIN
+		FROM USEROLE
+		WHERE
+		1 = 0 
+		<if test="_parameter!=null and _parameter!=''">
+		 OR
+		 LOWER(ACCOUNT) = #{_parameter,jdbcType=VARCHAR}  
+		</if>
+	</select>
+	
+</mapper>

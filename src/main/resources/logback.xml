@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- wbw 2016.8.23 -->
+<!-- scan:为true时,配置文件发生改变,将会被重载,默认true -->
+<!-- scanPeriod:设置监测配置文件是否修改的时间间隔,当scan为true时生效,默认单位:毫秒,默认时间间隔1分钟(秒:seconds) -->
+<!-- debug:为true时,将打印logback内部日志信息,实时查看logback运行状态,默认false -->
+<configuration>
+	<!-- 设置变量 -->
+	<!-- 日志文件存储位置 -->
+	<property name="LOG_HOME" value="${logback.LOG_HOME}" />
+	<!-- 应用上下文名称 -->
+	<property name="APP_NAME" value="${logback.APP_NAME}" />
+
+	<!-- 上下文名称,区分不同应用程序,默认'default' -->
+	<contextName>${APP_NAME}</contextName>
+
+	<!-- <appender>日志组件 -->
+	<!-- name:指定appender名称 -->
+	<!-- class:指定appender的全限定名 -->
+
+	<!-- <encoder>将日志信息转换成字节数组并写入到输出流 -->
+	<!-- charset:指定字符集,建议指定UTF-8,利于中文输出 -->
+
+	<!-- ch.qos.logback.core.ConsoleAppender:把日志添加到控制台 -->
+	<!-- <encoder>:同上 -->
+	<!-- <target>:字符串 System.out或 System.err,默认 System.out -->
+
+	<!-- ch.qos.logback.core.FileAppender:把日志添加到文件 -->
+	<!-- <file>:被写入的文件名,相对目录或绝对目录,如果上级目录不存在会自动创建,无默认值 -->
+	<!-- <append>:true,日志被追加到文件结尾; false,清空已有文件.默认true -->
+	<!-- <encoder>:同上 -->
+	<!-- <prudent>:true,允许多个FileAppender向同一文件进行写入,会降低效率,默认 false -->
+
+	<!-- ch.qos.logback.core.rolling.RollingFileAppender:滚动记录文件,先将日志记录到指定文件,当符合某个条件时,将日志记录到其他文件 -->
+	<!-- <file>:被写入的文件名,相对目录或绝对目录,如果上级目录不存在会自动创建,无默认值 -->
+	<!-- <append>:true,日志被追加到文件结尾; false,清空已有文件.默认true -->
+	<!-- <encoder>:同上 -->
+	<!-- <rollingPolicy>:RollingFileAppender滚动策略,即之前提到的'某个条件' -->
+	<!-- <triggeringPolicy >:RollingFileAppender激活策略,何时进行滚动 -->
+	<!-- <prudent>:为true时,支持TimeBasedRollingPolicy,不支持FixedWindowRollingPolicy,有两个限制:1。不允许文件压缩;2。file属性需为空 -->
+
+	<!-- 把日志添加到控制台 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{80} %c %L -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 滚动记录日志文件 -->
+	<appender name="RollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 对存入文件的日志level进行拦截 -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${APP_NAME}-%d{yyyy-MM-dd}-%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- 日志文件大小限制 -->
+				<maxFileSize>20mb</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- 保存天数 -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder charset="UTF-8">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{80} %c %L-
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- <logger> -->
+	<!-- name:指定受此logger约束的某一个包或者具体的某一个类 -->
+	<!-- level:日志打印级别.大小写无关:TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF,还有一个特殊值INHERITED或者不指定,代表继承上级的级别 -->
+	<!-- addtivity:默认为true,将此logger的打印信息向上传递 -->
+	<!-- 可以包含零个或多个<appender-ref>元素,标识这个appender将会添加到这个logger中 -->
+
+	<!-- 根logger,只有level项且不能设为INHERITED或NULL,其他logger会继承其配置 -->
+	<root level="${root.level}">
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<!-- 自定义logger -->
+	<logger name="org.springframework" level="${org.springframework.level}" />
+	<logger name="org.apache" level="${org.apache.level}" />
+	<logger name="org.mybatis" level="${org.mybatis.level}" />
+	<logger name="org.loushang" level="${org.loushang.level}" />
+	<logger name="net.sf.ehcache" level="${net.sf.ehcache.level}" />
+	<logger name="com.inspur.tax" level="${com.inspur.tax.level}" />
+
+</configuration>

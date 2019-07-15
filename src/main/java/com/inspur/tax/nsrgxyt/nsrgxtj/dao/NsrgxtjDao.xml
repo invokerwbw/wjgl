@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspur.tax.nsrgxyt.nsrgxtj.dao.NsrgxtjDao">
+
+    <!-- 获取汇总表中纳税人关系 -->
+	<select id="listGx" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT T.NSRSBH, T.NSRMC, T.GXXLMC, T.GX_NSRSBH, T. GX_NSRMC, T.GXCC
+          FROM HZB_JYTP T
+         WHERE 1 = 1
+		 <if test="nsrsbh != null and nsrsbh != ''">
+		   AND T.NSRSBH = #{nsrsbh,jdbcType=VARCHAR}
+		 </if>
+		 <if test="gxNsrsbh != null and gxNsrsbh != ''">
+		   AND T.GX_NSRSBH = #{gxNsrsbh,jdbcType=VARCHAR}
+		 </if>
+		 <if test="gxxlDm != null and gxxlDm != ''">
+		   AND T.GXXL_DM = #{gxxlDm,jdbcType=CHAR}
+		 </if>
+	</select>
+	
+    <!-- 获取关系统计列表信息 -->
+	<select id="listGxtj" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT DJXH,
+               NSRSBH,
+               NSRMC,
+               GXSL,
+               GXNSRHS,
+               CQTZGX,
+               GLJYGX,
+               BSGLGX,
+               SSQTGX,
+               QTGLGX
+          FROM YT_GXTJ T
+	</select>
+
+</mapper>

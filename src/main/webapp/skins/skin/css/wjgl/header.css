@@ -1,0 +1,13 @@
+
+/*公共头部区域*/
+.header{ width: 100%; background: #004e86;}
+.header .top{ width: 84%; height: 50px; margin: 0 auto; font-size: 14px; color: #fff; line-height: 50px; }
+.header .top ul{float: right;}
+.header .top ul li{float: left;}
+.header .top ul a{ color: #fff; font-size: 14px; }
+.header .top ul i{ font-style: normal; margin: 0 14px; }
+.header .top ul a:hover{ color: #58abdd; }
+.logo{ display: block; padding: 30px 20px 20px; }
+
+
+

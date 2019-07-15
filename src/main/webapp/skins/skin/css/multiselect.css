@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+/*多选
+--------------------------------------------------------------------*/
+.ms-container .ms-select {
+	border: 1px #a8c5eb solid;
+}
+
+.ms-container .ms-select div.title{
+  margin: 0;
+  color: #2b548c;
+  text-align: left;
+  height: 24px;
+  line-height: 24px;
+  background: transparent url('../img/multiselect/title_bg.gif') repeat-x;
+  font-size: 12px;
+  font-weight: bold;
+  border-bottom: 1px #6a9cc0 solid;
+}
+
+.ms-container ul {
+	height: 216px;
+	margin: 0;
+	list-style-type: none;
+	background-color: #fff;
+}
+
+.ms-container ul.ms-list {
+	padding: 0px;
+	overflow-y: auto;
+}
+
+.ms-container .ms-select li.ms-elem-select,.ms-container .ms-select li.ms-elem-selected,
+	.ms-container .ms-select li.ms-elem-disabled
+{
+	padding:0 10px 0 22px;
+	color: #555;
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+}
+
+.ms-container .ms-select li.ms-elem-select:hover{
+	cursor: pointer;
+	background-color: #d8eefb;
+	color: #000;
+}
+
+.ms-container .ms-select li.ms-elem-selected {
+	background-color: #d8eefb;
+}
+
+.ms-container .ms-select li.ms-elem-disabled {
+	cursor: not-allowed;
+	background-color: #eee;
+	color: #aaa;
+}
+
+.ms-container .ms-optgroup-label {
+	padding: 5px 0px 0px 20px;
+	background: transparent url('../img/multiselect/plus.gif') no-repeat 6px 11px;
+	cursor: pointer;
+	color: #999;
+	line-height: 24px;
+}
+
+.ms-container .ms-optgroup-label.collapse {
+	background-image: url('../img/multiselect/minus.gif');
+}
+
+.ms-table .ms-icon-td{
+	width: 40px;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.ms-table .ms-icon-td div{
+	cursor: pointer;
+	height:26px;
+    width:26px;
+    margin:20px auto;
+}
+
+.ms-table .ms-icon-td div.rightBtn{
+	background: transparent url('../img/multiselect/right.gif') no-repeat center;
+}
+
+.ms-table .ms-icon-td div.rightAllBtn{
+	background: transparent url('../img/multiselect/right_all.gif') no-repeat center;
+}
+
+.ms-table .ms-icon-td div.leftBtn{
+	background: transparent url('../img/multiselect/left.gif') no-repeat center;
+}
+
+.ms-table .ms-icon-td div.leftAllBtn{
+	background: transparent url('../img/multiselect/left_all.gif') no-repeat center;
+}
+
+.ms-table tr td{
+	border:none;
+}
+.ms-list li{
+	border-bottom:1px dotted #8fc3f5;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.ms-list li.even{
+	background: #F5FFEF;
+}

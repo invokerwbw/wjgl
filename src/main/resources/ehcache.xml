@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- wbw 2016.8.24 -->
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+	updateCheck="false">
+
+	<!-- <diskStore path="java.io.tmpdir" /> -->
+	<diskStore path="${ehcache.diskStore}" />
+	
+	<!-- 以下属性是必须的 -->
+	<!-- name:cache的名称,用来标识cache,必须是唯一的 -->
+	<!-- maxElementsInMemory:内存中可以被创建的最大对象数量(0代表无限制) -->
+	<!-- maxElementsOnDisk:磁盘中存储的最大对象数量(默认为0,表示无限制) -->
+	<!-- eternal:元素是否永恒,如果true,超时设定被忽略,元素永不失效 -->
+	<!-- overflowToDisk:当内存到达上限时,元素是否溢出到磁盘中 -->
+	<!-- 以下属性是可选的 -->
+	<!-- timeToIdleSeconds:元素空闲时间,指元素在多长时间没有被访问就会失效,只有eternal为false时有效(默认为0,表示元素可一直闲置) -->
+	<!-- timeToLiveSeconds:元素存活时间,指元素从创建到失效的时间,只有eternal为false时有效(默认为0,表示元素可一直存活) -->
+	<!-- diskPersistent:重启JVM后存储在磁盘中的缓存是否有效(默认为false) -->
+	<!-- diskExpiryThreadIntervalSeconds:磁盘时效线程运行间隔(默认为120秒) -->
+	<!-- diskSpoolBufferSizeMB:写入到磁盘存储前的内存缓冲区,先写入此区域然后异步写入磁盘(默认大小30MB),每个cache独享此缓冲区,如果遇到内存溢出错误,考虑降低此值,如果想提高向磁盘写入的性能，考虑增加它,Trace日志级别会显示此操作是否发生 -->
+	<!-- memoryStoreEvictionPolicy:到达maxElementsInMemory限制后的逐出策略(LRU:最近最少使用(默认策略);FIFO:先进先出;LFU:最少使用) -->
+	
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+    
+    <cache name="baseCache"
+           maxElementsInMemory="10000"
+           maxElementsOnDisk="10000000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3000"
+           timeToLiveSeconds="0"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="120"
+           diskSpoolBufferSizeMB="30"
+           memoryStoreEvictionPolicy="LRU">
+    </cache>
+           
+</ehcache>

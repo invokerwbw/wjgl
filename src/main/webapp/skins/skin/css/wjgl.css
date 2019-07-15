@@ -1,0 +1,218 @@
+/* 
+ * Name: wjgl CSS
+ * Date: 2017-07-05
+ */
+.s-btn {
+	color: #bbc4c8;
+	padding: 4px 12px;
+	background-color: #fff;
+	border-color: #bbc4c8;
+	border-radius: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+	font-size: 16px;
+}
+
+.s-btn:focus, .s-btn:hover {
+	color: #008cc9;
+	background-color:;
+	border-color: #008cc9
+}
+
+.s-title {
+	height: 35px;
+	margin-top: 20px;
+	font-family: microsoft yahei;
+}
+
+.s-title span {
+	background: #008cc9;
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	font-size: 16px;
+	color: #fff;
+	padding: 0px 20px;
+}
+
+.s-title b {
+	font-weight: normal;
+	font-size: 16px;
+	color: #a9a9a9;
+	line-height: 35px;
+	margin-left: 10px;
+}
+
+.s-title span i {
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.s-title p {
+	float: right;
+	border: 1px solid #bbc4c8;
+	color: #bbc4c8;
+	font-size: 16px;
+	cursor: pointer;
+	line-height: 30px;
+	border-radius: 3px;
+	padding: 0px 10px;
+	height: 30px;
+	margin: 0px;
+}
+
+.s-title p:hover {
+	color: #008cc9;
+	border-color: #008cc9;
+}
+
+.s-title p i {
+	margin-right: 10px;
+	font-size: 20px;
+	display: inline-block;
+	margin-top: 7px;
+	float: left;
+}
+
+.s-border {
+	border-bottom: 2px solid #008cc9;
+}
+
+.s-glxx_con {
+	border: 1px solid #e7e7e7;
+	padding: 20px 0px 10px 0px;
+	font-family: microsoft yahei;
+}
+
+.s-glxx_con ul li {
+	width: 14%;
+	float: left;
+	text-align: center;
+	font-size: 14px;
+	color: #8e8e8e;
+	line-height: 30px;
+}
+
+.s-glxx_con ul li div {
+	border-right: 1px solid #e7e7e7;
+}
+
+.s-glxx_con ul li div p {
+	font-weight: bold;
+	font-size: 24px;
+	color: #256ab9;
+	margin: 0px;
+}
+
+.s-xx_con {
+	border: 1px solid #e7e7e7;
+	background: #fcfcfd;
+	border-top: none;
+	font-size: 16px;
+	color: #939ca1;
+	padding: 15px 0px;
+	font-family: microsoft yahei;
+}
+
+.s-xx_con .control-label {
+	height: 35px;
+	line-height: 35px;
+	display: block;
+	text-align: left !important;
+}
+
+.s-xx_con .control-label span {
+	width: 180px;
+	display: inline-block;
+	color: #939ca1;
+}
+
+.s-xx_con-title {
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	color: #939ca1;
+	width: 180px;
+}
+
+.s-xx_con-con {
+	line-height: 35px;
+}
+
+.s-xx_con .s-control-label {
+	text-align: right;
+	line-height: 38px;
+	color: #939ca1;
+}
+
+.s-xx_con .s-control-label span {
+	color: #ff353e;
+	top: 9px;
+	margin-left: 10px;
+}
+
+.s-tbxx_con ul li {
+	margin: 10px 0px;
+	float: left;
+	width: 49%;
+}
+
+.s-tbxx_con ul li div.tb {
+	border: 1px solid #e7e7e7;
+	padding: 10px;
+}
+
+.s-tbxx_con ul li p {
+	font-size: 16px;
+	font-family: microsoft yahei;
+	color: #004e8e;
+	height: 30px;
+	line-height: 30px;
+}
+
+.s-tbxx_con ul li p i {
+	font-size: 18px;
+	float: left;
+	margin-top: 7px;
+	margin-right: 6px;
+}
+
+.s-Validform_input {
+	height: 36px;
+	width: 40% !important;
+	margin-right: 10px;
+	float: left;
+	font-size: 16px;
+	line-height: 36px;
+}
+
+.ss-Validform_input {
+	height: 36px !important;
+	width: 100% !important;
+	margin-right: 10px;
+	float: left;
+	font-size: 16px;
+	line-height: 36px;
+}
+
+.s-Validform_span {
+	font-size: 15px !important;
+	/* color: #a9a9a9; */
+	line-height: 38px !important;
+	height: 38px !important;
+}
+
+.jianju {
+	height: 10px;
+}
+
+.btn {
+	font-family: microsoft yahei;
+}
+
+.jbxx {
+	padding: 0 0 0 20px;
+	font: 16px arial, microsoft yahei, simsun, simhei, sans-serif;
+	color: #454545;
+	font-weight: 400;
+}

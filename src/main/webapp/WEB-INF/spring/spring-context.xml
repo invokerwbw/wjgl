@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                    http://www.springframework.org/schema/mvc
+                    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+                    http://www.springframework.org/schema/cache
+                    http://www.springframework.org/schema/cache/spring-cache.xsd ">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:config.properties</value>
+				<value>classpath:datasource.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 非spring组件中获取容器中对象的工具 -->
+	<bean class="org.loushang.framework.util.SpringContextHolder"
+		lazy-init="false" />
+
+	<!-- spring加载完成后自动执行方法 -->
+	<bean class="com.inspur.tax.common.autorun.ITaxAutoRunListener" />
+
+	<!-- 异常统一处理 -->
+	<bean id="exceptionResolver"
+		class="org.loushang.framework.exception.BusinessExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.loushang.framework.exception.BusinessException">public/errorpage</prop>
+				<prop key="java.lang.Exception">public/500</prop>
+				<prop key="java.lang.Throwable">public/500</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- java方式加载配置 -->
+	<context:component-scan base-package="com.inspur.tax.common.config" />
+
+	<!-- 使用Annotation自动注册Bean,只扫描@ITaxAutoRun -->
+	<context:component-scan base-package="com.inspur.tax"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="com.inspur.tax.common.autorun.annotation.ITaxAutoRun" />
+	</context:component-scan>
+
+</beans>
