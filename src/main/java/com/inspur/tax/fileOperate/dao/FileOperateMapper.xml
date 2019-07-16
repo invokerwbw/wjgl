@@ -4,31 +4,32 @@
 <mapper namespace="com.inspur.tax.fileOperate.dao.FileOperateMapper">
 	
 	<select id="stdInfo" parameterType="String" resultType="java.util.Map">
-		SELECT t1.A100 AS BZH,
-		t1.A298 AS ZWMC,
-		t1.A302 AS YWMC,
-		t1.A200 AS ZT,
-		t1.A010 AS FW,
-		t1.A101 AS FBRQ,
-		t1.A205 AS SSRQ,
-		t1.A206 AS FZRQ,
-		t2.orgname AS BZZZ,
-		t1.A305 AS QWYS,
-		t1.A1004 AS ZWYZ,
-		t1.A461 AS DTBZ,
-		t1.A462 AS BDTBZ,
-		t1.A800 AS CYBZ,
-		t1.A820 AS XGD,
-		t1.A209 AS QCDW,
-		t1.A825 AS ICSFLH,
-		t1.A826 AS ZBFLH,
-		t1.A4754 AS GMHYFLH
-		FROM STANDARDWC t1, org_all t2
+		SELECT 
+		    T1.A100 AS BZH,
+			T1.A298 AS ZWMC,
+			T1.A302 AS YWMC,
+			T1.A200 AS ZT,
+			T1.A010 AS FW,
+			T1.A101 AS FBRQ,
+			T1.A205 AS SSRQ,
+			T1.A206 AS FZRQ,
+			T1.A305 AS QWYS,
+			T1.A1004 AS ZWYZ,
+			T1.A461 AS DTBZ,
+			T1.A462 AS BDTBZ,
+			T1.A800 AS CYBZ,
+			T1.A820 AS XGD,
+			T1.A209 AS QCDW,
+			T1.A825 AS ICSFLH,
+			T1.A826 AS ZBFLH,
+			T1.A4754 AS GMHYFLH,
+			T2.ORGNAME AS BZZZ
+		FROM
+			STANDARDWC T1
+		LEFT JOIN ORG_ALL T2 ON T1.A006 = T2.ORGCODE
 		WHERE
-		t1.A100 = #{bzh,jdbcType=VARCHAR}
-		and t1.A006 = t2.orgcode
+		    T1.A100 = #{bzh,jdbcType=VARCHAR}
 	</select>
-	
 	
 	<select id="getA298ByA100" parameterType="String" resultType="String">
 		SELECT t1.A298 AS ZWMC
