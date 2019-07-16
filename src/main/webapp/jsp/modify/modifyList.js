@@ -50,6 +50,8 @@ $(document).ready(function() {
 		$("#weishengxiao").prop("checked", true);
 	});
 	
+	$(document).on("click", ".addBtn", toAddStd);
+	
 });
 
 function getStatus(){
@@ -118,6 +120,75 @@ function renderBzmc(data, type, full) {
 
 function renderCz(data, type, full) {
 	var bzh = data;
-	
-	return '';
+	data = '<a href="javascript:toUpdateStd(' + '\'' + bzh + '\'' + ');">' + '修改' + '</a>';
+    data = data + ' | <a href="javascript:deleteStd(' + '\'' + bzh + '\''	+ ');">' + '删除' + '</a>';
+    return data;
+}
+
+/**
+ * 重载
+ * 
+ * @returns
+ */
+function reload() {
+	var param = {};
+	grid.reload(url, param, false);
+}
+
+function toAddStd() {
+	$.dialog({
+		type : 'iframe',
+		url : ctx + '/service/modify/toAddStd',
+		title : '标准维护',
+		width : 800,
+		height : 600,
+		onclose : function() {
+			reload();
+		}
+	});
+}
+
+function toUpdateStd(bzh) {
+	$.dialog({
+		type : 'iframe',
+		url : ctx + '/service/modify/toUpdateStd?bzh=' + bzh,
+		title : '标准维护',
+		width : 800,
+		height : 600,
+		onclose : function() {
+			reload();
+		}
+	});
+}
+
+function deleteStd(bzh) {
+	$.dialog({
+		title : "",
+		type : 'confirm',
+		content : '确定删除该标准吗?',
+		ok : function() {
+			$.ajax({
+				type : "post",
+				url : ctx + '/service/modify/deleteStd?bzh=' + bzh,
+				success : function(data) {
+					if (data == true) {
+						$.sticky('删除成功！', {
+							style : 'success',
+							autoclose : 5000,
+							position : 'center'
+						});
+					} else {
+						$.sticky('删除失败！', {
+							style : 'warning',
+							autoclose : 5000,
+							position : 'center'
+						});
+					}
+					reload();
+				}
+			});
+		},
+		cancel : function() {
+		}
+	});
 }

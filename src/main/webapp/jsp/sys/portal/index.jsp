@@ -117,9 +117,6 @@
 				<div class="ue-vmenu">
 					<ul>
 						<li><a
-							onclick="loadUrl('关系分类', '${ctx}/service/nsrgxgl/toGxfl')"
-							data-role="leaf">关系分类</a></li>
-						<li><a
 							onclick="loadUrl('标准检索', '${ctx}/service/search/toStdList')"
 							data-role="leaf">标准检索</a></li>
 						<li style="display: none" id="update"><a
@@ -128,9 +125,6 @@
 						<li style="display: none" id="modify"><a
 							onclick="loadUrl('标准维护', '${ctx}/service/modify/list')"
 							data-role="leaf">标准维护</a></li>
-						<%-- <li><a
-							onclick="loadUrl('标准更新', '${ctx}/service/update/updatePage')"
-							data-role="leaf">标准更新</a></li> --%>
 						<li style="display: none"><a
 							onclick="loadUrl('用户管理', '${ctx}/service/sys/userListPage')"
 							data-role="leaf">用户管理</a></li>

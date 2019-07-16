@@ -7,4 +7,12 @@ public interface ModifyMapper {
 
 	List<Map<String, String>> listData(Map<String, Object> parameter);
 
+	Map<String, Object> getStd(String bzh);
+
+	int deleteStd(String bzh);
+
+	int updateStd(Map<String, Object> std);
+
+	int insertStd(Map<String, Object> std);
+
 }

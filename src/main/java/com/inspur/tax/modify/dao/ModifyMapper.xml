@@ -40,5 +40,104 @@
 		</if>
 		  ORDER BY T.A007*1 ASC
 	</select>
+	
+	<select id="getStd" parameterType="String" resultType="java.util.Map">
+		SELECT 
+		    T1.A100 AS BZH,
+			T1.A200 AS ZT,
+			T1.A298 AS ZWMC,
+			T1.A302 AS YWMC,
+			T1.A010 AS FW,
+			T1.A101 AS FBRQ,
+			T1.A205 AS SSRQ,
+			T1.A206 AS FZRQ,
+			T1.A006 AS ZZH,
+			T1.A305 AS QWYS,
+			T1.A1004 AS ZWYZ,
+			T1.A461 AS DTBZ,
+			T1.A462 AS BDTBZ,
+			T1.A800 AS CYBZ,
+			T1.A820 AS XGD,
+			T1.A209 AS QCDW,
+			T1.A826 AS ICSFLH,
+			T1.A825 AS ZBFLH,
+			T1.A4754 AS GMHYFLH
+		FROM
+			STANDARDWC T1
+		WHERE
+		    T1.A100 = #{bzh,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteStd" parameterType="String">
+		DELETE STANDARDWC WHERE A100 = #{bzh,jdbcType=VARCHAR}
+	</delete>
+
+	<update id="updateStd" parameterType="java.util.Map">
+        UPDATE STANDARDWC
+           SET A200 = #{zt,jdbcType=VARCHAR},
+               A298 = #{zwmc,jdbcType=VARCHAR},
+               A302 = #{ywmc,jdbcType=VARCHAR},
+               A010 = #{fw,jdbcType=VARCHAR},
+               A101 = #{fbrq,jdbcType=VARCHAR},
+               A205 = #{ssrq,jdbcType=VARCHAR},
+               A206 = #{fzrq,jdbcType=VARCHAR},
+               A006 = #{zzh,jdbcType=VARCHAR},
+               A305 = #{qwys,jdbcType=VARCHAR},
+               A1004 = #{zwyz,jdbcType=VARCHAR},
+               A461 = #{dtbz,jdbcType=VARCHAR},
+               A462 = #{bdtbz,jdbcType=VARCHAR},
+               A800 = #{cybz,jdbcType=VARCHAR},
+               A820 = #{xgd,jdbcType=VARCHAR},
+               A209 = #{qcdw,jdbcType=VARCHAR},
+               A826 = #{icsflh,jdbcType=VARCHAR},
+               A825 = #{zbflh,jdbcType=VARCHAR},
+               A4754 = #{gmhyflh,jdbcType=VARCHAR}
+         WHERE A100 = #{bzh,jdbcType=VARCHAR}
+	</update>
+	
+	<insert id="insertStd" parameterType="java.util.Map">
+        INSERT INTO STANDARDWC
+          (A001,
+          A100,
+          A200,
+          A298,
+          A302,
+          A010,
+          A101,
+          A205,
+          A206,
+          A006,
+          A305,
+          A1004,
+          A461,
+          A462,
+          A800,
+          A820,
+          A209,
+          A826,
+          A825,
+          A4754)
+       VALUES
+         ('0',
+          #{bzh,jdbcType=VARCHAR},
+          #{zt,jdbcType=VARCHAR},
+          #{zwmc,jdbcType=VARCHAR},
+          #{ywmc,jdbcType=VARCHAR},
+          #{fw,jdbcType=VARCHAR},
+          #{fbrq,jdbcType=VARCHAR}, 
+          #{ssrq,jdbcType=VARCHAR}, 
+          #{fzrq,jdbcType=VARCHAR},
+          #{zzh,jdbcType=VARCHAR},
+          #{qwys,jdbcType=VARCHAR},
+          #{zwyz,jdbcType=VARCHAR},
+          #{dtbz,jdbcType=VARCHAR},
+          #{bdtbz,jdbcType=VARCHAR},
+          #{cybz,jdbcType=VARCHAR},
+          #{xgd,jdbcType=VARCHAR},
+          #{qcdw,jdbcType=VARCHAR},
+          #{icsflh,jdbcType=VARCHAR},
+          #{zbflh,jdbcType=VARCHAR},
+          #{gmhyflh,jdbcType=VARCHAR})
+	</insert>
 
 </mapper>

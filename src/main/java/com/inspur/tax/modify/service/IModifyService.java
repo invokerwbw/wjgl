@@ -6,4 +6,11 @@ public interface IModifyService {
 
 	Map<String, Object> listData(Map<String, Object> parameter);
 
+	Map<String, Object> getStd(String bzh);
+
+	boolean deleteStd(String bzh);
+
+	boolean updateStd(Map<String, Object> std);
+	
+	boolean insertStd(Map<String, Object> std);
 }

@@ -53,6 +53,9 @@
 						<button type="button" class="btn ue-btn resetBtn" id="resetBtn">
 							<span class="fa fa-refresh"></span>重置
 						</button>
+						<button type="button" class="btn ue-btn addBtn" id="addBtn">
+							<span class="fa fa-plus"></span>新增
+						</button>
 					</td>
 				</tr>
 			</table>

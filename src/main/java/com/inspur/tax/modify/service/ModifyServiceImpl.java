@@ -109,4 +109,24 @@ public class ModifyServiceImpl implements IModifyService {
 		return data;
 	}
 
+	@Override
+	public Map<String, Object> getStd(String bzh) {
+		return modifyMapper.getStd(bzh);
+	}
+
+	@Override
+	public boolean deleteStd(String bzh) {
+		return modifyMapper.deleteStd(bzh) > 0;
+	}
+
+	@Override
+	public boolean updateStd(Map<String, Object> std) {
+		return modifyMapper.updateStd(std) > 0;
+	}
+
+	@Override
+	public boolean insertStd(Map<String, Object> std) {
+		return modifyMapper.insertStd(std) > 0;
+	}
+
 }
