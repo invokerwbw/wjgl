@@ -18,7 +18,7 @@ import com.inspur.tax.fileOperate.service.IFileOperateService;
 
 @Controller
 @RequestMapping("/fileOperate")
-public class fileOperateController {
+public class FileOperateController {
 
 	@Resource
 	public IFileOperateService fileOperateService;
@@ -48,7 +48,7 @@ public class fileOperateController {
 			throws IOException {
 		return fileOperateService.download(request, response);
 	}
-	
+
 	@RequestMapping("/checkPDFIsExist")
 	@ResponseBody
 	public Map<String, Object> checkPDFIsExist(HttpServletRequest request) {
@@ -56,7 +56,7 @@ public class fileOperateController {
 		Map<String, Object> result = fileOperateService.checkPDFIsExist(bzh);
 		return result;
 	}
-	
+
 	@RequestMapping("/checkBzhIsExist")
 	@ResponseBody
 	public Map<String, Object> checkBzhIsExist(HttpServletRequest request) {
