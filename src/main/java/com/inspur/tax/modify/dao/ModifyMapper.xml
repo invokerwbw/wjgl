@@ -69,7 +69,7 @@
 	</select>
 	
 	<delete id="deleteStd" parameterType="String">
-		DELETE STANDARDWC WHERE A100 = #{bzh,jdbcType=VARCHAR}
+		DELETE FROM STANDARDWC WHERE A100 = #{bzh,jdbcType=VARCHAR}
 	</delete>
 
 	<update id="updateStd" parameterType="java.util.Map">
@@ -97,7 +97,8 @@
 	
 	<insert id="insertStd" parameterType="java.util.Map">
         INSERT INTO STANDARDWC
-          (A001,
+          (ID,
+          A001,
           A100,
           A200,
           A298,
@@ -118,7 +119,8 @@
           A825,
           A4754)
        VALUES
-         ('0',
+         (#{id,jdbcType=VARCHAR},
+          '0',
           #{bzh,jdbcType=VARCHAR},
           #{zt,jdbcType=VARCHAR},
           #{zwmc,jdbcType=VARCHAR},

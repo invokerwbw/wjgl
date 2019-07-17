@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.inspur.tax.modify.dao.ModifyMapper;
 import com.inspur.tax.nsrgxyt.common.constant.ServiceConstant;
 import com.inspur.tax.query.util.SplitKeyWord;
+import com.inspur.tax.utils.StringUtils;
 
 @Service("modifyService")
 public class ModifyServiceImpl implements IModifyService {
@@ -115,6 +116,16 @@ public class ModifyServiceImpl implements IModifyService {
 	}
 
 	@Override
+	public boolean checkStd(String bzh) {
+		boolean result = false;
+		Map<String, Object> std = modifyMapper.getStd(bzh);
+		if (std == null) {
+			result = true;
+		}
+		return result;
+	}
+
+	@Override
 	public boolean deleteStd(String bzh) {
 		return modifyMapper.deleteStd(bzh) > 0;
 	}
@@ -126,7 +137,15 @@ public class ModifyServiceImpl implements IModifyService {
 
 	@Override
 	public boolean insertStd(Map<String, Object> std) {
-		return modifyMapper.insertStd(std) > 0;
+		boolean result = false;
+		if (std != null) {
+			String bzh = (String) std.get("bzh");
+			if (this.checkStd(bzh)) {
+				std.put("id", StringUtils.getUUID());
+				result = modifyMapper.insertStd(std) > 0;
+			}
+		}
+		return result;
 	}
 
 }
