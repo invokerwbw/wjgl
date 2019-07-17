@@ -148,4 +148,9 @@ public class ModifyServiceImpl implements IModifyService {
 		return result;
 	}
 
+	@Override
+	public boolean updateStdFilePath(Map<String, Object> std) {
+		return modifyMapper.updateStdFilePath(std) > 0;
+	}
+
 }

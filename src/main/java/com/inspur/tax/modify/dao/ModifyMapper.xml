@@ -141,5 +141,11 @@
           #{zbflh,jdbcType=VARCHAR},
           #{gmhyflh,jdbcType=VARCHAR})
 	</insert>
+	
+	<update id="updateStdFilePath" parameterType="java.util.Map">
+        UPDATE STANDARDWC
+           SET A1000 = #{filePath,jdbcType=VARCHAR}
+         WHERE A100 = #{bzh,jdbcType=VARCHAR}
+	</update>
 
 </mapper>

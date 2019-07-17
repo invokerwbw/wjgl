@@ -15,4 +15,6 @@ public interface IModifyService {
 	boolean updateStd(Map<String, Object> std);
 
 	boolean insertStd(Map<String, Object> std);
+
+	boolean updateStdFilePath(Map<String, Object> std);
 }

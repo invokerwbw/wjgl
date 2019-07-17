@@ -54,7 +54,7 @@ $(document).ready(function() {
 
 });
 
-function submitStdForm(url){
+function submitStdForm(url) {
 	$.ajax({
 		url : url,
 		type : "post",
@@ -83,7 +83,20 @@ function submitStdForm(url){
 		}),
 		success : function(data) {
 			if (data == true) {
-				parent.dialog.get(window).close();
+				if (flag == "add") {
+					$.dialog({
+						type : 'iframe',
+						url : ctx + '/service/modify/toAddStdPDF?bzh=' + $("#bzh").val(),
+						title : '标准维护',
+						width : 400,
+						height : 300,
+						onclose : function() {
+							parent.dialog.get(window).close();
+						}
+					});
+				} else {
+					parent.dialog.get(window).close();
+				}
 			} else {
 				$.sticky('保存失败，该标准号已存在！', {
 					style : 'warning',

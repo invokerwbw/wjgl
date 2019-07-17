@@ -15,4 +15,6 @@ public interface ModifyMapper {
 
 	int insertStd(Map<String, Object> std);
 
+	int updateStdFilePath(Map<String, Object> std);
+
 }
